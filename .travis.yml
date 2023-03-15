@@ -1,0 +1,12 @@
+language: java
+services:
+  - docker
+jdk:
+  - openjdk17
+install:
+  - mvn clean install -DskipTests
+script:
+  - mvn test
+  - docker build serveur -t r2tp6:serveur
+  - docker build client -t r2tp6:client
+  - docker-compose up

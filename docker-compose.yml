@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+
+
+  serveur:
+    image: r2tp6:serveur
+    container_name: serveur
+    networks:
+      testing_net:
+        ipv4_address: 172.98.0.253
+
+
+  client:
+    image: r2tp6:client
+    # container_name: client
+    environment:
+      - SERVER_IP=172.98.0.253
+    networks:
+      testing_net:
+      #  ipv4_address: 172.28.0.3
+
+
+
+
+networks:
+  testing_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.98.0.0/16
